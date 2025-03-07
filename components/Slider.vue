@@ -121,7 +121,11 @@ export default {
       this.animateTitles();
 
       setTimeout(() => {
+        // Después de pasar todos los slides, vuelve al primer slide
         this.currentIndex = nextIndex;
+        if (this.currentIndex === this.slideData.length) {
+          this.currentIndex = 0; // Reiniciar desde el principio
+        }
       }, 1000);
     },
 
@@ -133,7 +137,7 @@ export default {
       return (this.currentIndex - 1 + this.slideData.length) % this.slideData.length;
     },
     getNextIndex() {
-      return (this.currentIndex + 1) % this.slideData.length;
+      return (this.currentIndex + 1) % this.slideData.length;  // Ciclo cuando llega al final
     },
     handleSlideClick(index) {
       if (index === this.getNextIndex()) {
